@@ -1,0 +1,190 @@
+<div class="form-wrapper w-50 m-auto">
+  <form [formGroup]="registerForm" (ngSubmit)="handleRegSubmit()">
+    <!-- Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        aria-describedby="nameHelp"
+        formControlName="name"
+      />
+      <div *ngIf="formControls['name'].touched && !formControls['name'].valid">
+        <div
+          id="nameHelp"
+          *ngIf="
+            formControls['name'].errors &&
+            formControls['name'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Name</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        formControlName="email"
+      />
+      <div
+        *ngIf="formControls['email'].touched && !formControls['email'].valid"
+      >
+        <div
+          id="emailHelp"
+          *ngIf="
+            formControls['email'].errors &&
+            formControls['email'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </div>
+        <div
+          id="emailHelp"
+          *ngIf="
+            formControls['email'].errors &&
+            formControls['email'].errors['pattern']
+          "
+          class="form-text text-danger"
+        >
+          email example : name@email.com
+        </div>
+      </div>
+    </div>
+
+    <!-- User Name -->
+    <div class="mb-3">
+      <label for="userName" class="form-label">UserName</label>
+      <input
+        type="text"
+        class="form-control"
+        id="userName"
+        aria-describedby="userNameHelp"
+        formControlName="userName"
+      />
+      <div
+        *ngIf="
+          formControls['userName'].touched && !formControls['userName'].valid
+        "
+      >
+        <div
+          id="userNameHelp"
+          *ngIf="
+            formControls['userName'].errors &&
+            formControls['userName'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </div>
+        <div
+          id="userNameHelp"
+          *ngIf="
+            formControls['userName'].errors &&
+            formControls['userName'].errors['pattern']
+          "
+          class="form-text text-danger"
+        >
+          UserName should not contain spaces
+        </div>
+      </div>
+    </div>
+
+    <!-- password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        aria-describedby="passwordHelp"
+        formControlName="password"
+      />
+      <div
+        *ngIf="
+          formControls['password'].touched && !formControls['password'].valid
+        "
+      >
+        <div
+          id="passwordHelp"
+          *ngIf="
+            formControls['password'].errors &&
+            formControls['password'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </div>
+        <div
+          id="passwordHelp"
+          *ngIf="
+            formControls['password'].errors &&
+            formControls['password'].errors['pattern']
+          "
+          class="form-text text-danger"
+        >
+          password length not less than 8 characters , contains at least one
+          lowercase , one uppercase , at least one digit and special character
+        </div>
+      </div>
+    </div>
+
+    <!-- confirm pw -->
+    <div class="mb-3">
+      <label for="confPassword" class="form-label">Confirm Password</label>
+      <input
+        type="confPassword"
+        class="form-control"
+        id="confPassword"
+        aria-describedby="confPasswordHelp"
+        formControlName="confPassword"
+      />
+      <div
+        *ngIf="
+          (formControls['confPassword'].touched &&
+            !formControls['confPassword'].valid) ||
+          formControls['confPassword'].dirty
+        "
+      >
+        <div
+          id="passwordHelp"
+          *ngIf="
+            formControls['confPassword'].errors &&
+            formControls['confPassword'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="registerForm.errors?.['valuesNotTheSame']"
+        >
+          Passwords must match
+        </div>
+      </div>
+    </div>
+
+    <button
+      [disabled]="!registerForm.valid"
+      type="submit"
+      class="btn btn-success"
+    >
+      Register
+    </button>
+  </form>
+  <div class="mt-3">
+    <p>
+      Already have Account
+      <a class="text-dark fw-bold" routerLink="/login">Login</a>
+    </p>
+  </div>
+</div>

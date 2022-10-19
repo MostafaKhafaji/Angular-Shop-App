@@ -1,0 +1,25 @@
+<div class="card">
+  <a class="details" [routerLink]="['/product-details', product.id]">
+    <div class="img">
+      <img [src]="product.image" class="card-img-top" [alt]="product.name" />
+    </div>
+  </a>
+
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p>{{ product.price | currency: "EGP" }}</p>
+    <p>{{ product.createdAt | date: " MMMM , y" }}</p>
+    <p class="card-text">
+      <span *ngIf="product.count" class="text-success">In Stock</span>
+      <span *ngIf="!product.count" class="text-danger">Out of Stock</span>
+    </p>
+    <button
+      [disabled]="!product.count"
+      class="btn btn-primary"
+      (click)="handleAddToCart(product)"
+    >
+      {{ product.count ? "Add to cart" : "Will be avaible soon" }}
+      <fa-icon [icon]="faBasketShopping" class="cart-icon"> </fa-icon>
+    </button>
+  </div>
+</div>

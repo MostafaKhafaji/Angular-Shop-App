@@ -1,0 +1,73 @@
+<div class="form-wrapper w-50 m-auto">
+  <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm)">
+    <div class="mb-3">
+      <label for="loginMail" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="loginMail"
+        aria-describedby="emailHelp"
+        name="loginMail"
+        #loginMail="ngModel"
+        ngModel
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      />
+      <div
+        *ngIf="
+          (loginMail.touched && !loginMail.valid) ||
+          (loginForm.submitted && !loginMail.valid)
+        "
+      >
+        <div
+          id="nameHelp"
+          *ngIf="loginMail.errors && loginMail.errors['required']"
+          class="form-text text-danger"
+        >
+          This field is required
+        </div>
+        <div
+          id="nameHelp"
+          *ngIf="loginMail.errors && loginMail.errors['pattern']"
+          class="form-text text-danger"
+        >
+          email example : name@mail.com
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="loginPass" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="loginPass"
+        name="loginPass"
+        ngModel
+        #loginPass="ngModel"
+        required
+      />
+      <div
+        *ngIf="
+          (loginPass.touched && !loginPass.valid) ||
+          (loginForm.submitted && !loginPass.valid)
+        "
+      >
+        <div
+          id="nameHelp"
+          *ngIf="loginPass.errors && loginPass.errors['required']"
+          class="form-text text-danger"
+        >
+          This field is required
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div class="mt-3">
+    <p>
+      Don't have account?
+      <a class="text-dark fw-bold" routerLink="/register">Register</a>
+    </p>
+  </div>
+</div>

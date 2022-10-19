@@ -1,0 +1,22 @@
+nav {
+  background-color: #06283d;
+}
+.active {
+  color: #47b5ff !important;
+}
+.cart {
+  position: relative;
+}
+.cart span {
+  position: absolute;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+}
